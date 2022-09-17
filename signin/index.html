@@ -83,20 +83,43 @@
 
  <div class="text-center">
 <main class="form-signin w-100 m-auto">
-  <form method="post" name="login">
+  <form>
     <img class="mb-4" src="../img/logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">SIGN IN NOW</h1>
+    <h1 class="h3 mb-3 fw-normal">CREATE YOUR FREE ACCOUNT</h1>
 
-
-
-
+    <?php
+    require('db.php');
+    session_start();
+    
+    if (isset($_POST['email'])) {
+        $email = stripslashes($_REQUEST['email']);  
+        $email = mysqli_real_escape_string($con, $email);
+        $password = stripslashes($_REQUEST['password']);
+        $password = mysqli_real_escape_string($con, $password);
+        // Check user is exist in the database
+        $query    = "SELECT * FROM `users` WHERE email='$email'
+                     AND password='" . md5($password) . "'";
+        $result = mysqli_query($con, $query) or die(mysql_error());
+        $rows = mysqli_num_rows($result);
+        if ($rows == 1) {
+            $_SESSION['email'] = $email;
+            
+            header("Location: dashboard.php");
+        } else {
+            echo "<div class='form'>
+                  <h3>Incorrect email/password.</h3><br/>
+                  <p class='link'>Click here to <a href='login.php'>Login</a> again.</p>
+                  </div>";
+        }
+    } else {
+?>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="email" placeholder="name@example.com">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="password" placeholder="Password">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
 
@@ -105,7 +128,7 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit"><btn-txt>SIGN IN</btn-txt></button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit"><btn-txt>CREATE ONE</btn-txt></button>
     
     <hr class="my-4">
 
@@ -115,7 +138,7 @@
   <button class="w-100 btn btn-lg btn-block dhoori2" style="background-color: #007bb6;"
     type="submit"><i class="fab fa-windows"></i><btn-txt>SIGN IN WITH MICROSOFT</btn-txt></button>
 
-    <a>No account?</a><a href="../signin"> Create one</a>
+    <a>Have an account?</a><a href="../login/"> Sign in</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2022 - Made With ❤️ In India</p>
   </form>
 </main>
