@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -78,49 +79,54 @@
         </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         </div> 
-        <button onclick="window.location.href = '../login/';" type="button" class="btn btn-primary">Login</button></div>
+
+
+
+
+        <?php 
+
+if((isset($_SESSION['userid']) and strlen($_SESSION['userid']) > 5)){
+
+
+  echo "<button onclick="window.location.href = 'logout.php';" type="button" class="btn btn-primary">Logout</button>";
+ 
+ }else{
+ 
+ echo "<button onclick="window.location.href = '../login/';" type="button" class="btn btn-primary">Login</button>";
+ 
+ }
+
+
+?>
+
+        <?php if( $_SESSION['user_logged_in']): ?>
+          
+<?php else: ?>
+  <button onclick="window.location.href = '../login/';" type="button" class="btn btn-primary">Login</button>
+<?php endif; ?>
+
+
+
+
+        </div>
       </nav>
 
  <div class="text-center">
 <main class="form-signin w-100 m-auto">
-  <form>
+  
+<form onsubmit = "return validation()"  name="login" action = "authentication.php" method="POST">
     <img class="mb-4" src="../img/logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">CREATE YOUR FREE ACCOUNT</h1>
 
-    <?php
-    require('db.php');
-    session_start();
     
-    if (isset($_POST['email'])) {
-        $email = stripslashes($_REQUEST['email']);  
-        $email = mysqli_real_escape_string($con, $email);
-        $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($con, $password);
-        // Check user is exist in the database
-        $query    = "SELECT * FROM `users` WHERE email='$email'
-                     AND password='" . md5($password) . "'";
-        $result = mysqli_query($con, $query) or die(mysql_error());
-        $rows = mysqli_num_rows($result);
-        if ($rows == 1) {
-            $_SESSION['email'] = $email;
-            
-            header("Location: dashboard.php");
-        } else {
-            echo "<div class='form'>
-                  <h3>Incorrect email/password.</h3><br/>
-                  <p class='link'>Click here to <a href='login.php'>Login</a> again.</p>
-                  </div>";
-        }
-    } else {
-?>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
+      <input type="username" class="form-control" name="username" id="username" placeholder="name@example.com">
+      <label for="email">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
+      <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+      <label for="password">Password</label>
     </div>
 
     <div class="checkbox mb-3">
@@ -141,9 +147,8 @@
     <a>Have an account?</a><a href="../login/"> Sign in</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2022 - Made With ❤️ In India</p>
   </form>
-</main>
 
-</div>
-    
+</main>
+</div> 
   </body>
 </html>

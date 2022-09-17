@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -66,7 +65,6 @@
       }
     </style>
 
-    <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
   </head>
   <body>
@@ -80,24 +78,23 @@
         </div> 
         <button onclick="window.location.href = '../login/';" type="button" class="btn btn-primary">Login</button></div>
       </nav>
-
+      
  <div class="text-center">
 <main class="form-signin w-100 m-auto">
-  <form method="post" name="login">
+
+<form onsubmit = "return validation()"  name="login" action = "authentication.php" method="POST">
     <img class="mb-4" src="../img/logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">SIGN IN NOW</h1>
 
-
-
-
-
     <div class="form-floating">
-      <input type="email" class="form-control" id="email" placeholder="name@example.com">
+    
+    <input type="text" class="form-control" id="username" name="username" placeholder="name@example.com">
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="password" placeholder="Password">
-      <label for="floatingPassword">Password</label>
+
+      <input type="password" class="form-control" id="password" name="password" placeholder="password">
+      <label for="floatingpassword">password</label>
     </div>
 
     <div class="checkbox mb-3">
@@ -105,7 +102,10 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit"><btn-txt>SIGN IN</btn-txt></button>
+
+
+
+    <button class="w-100 btn btn-lg btn-primary login-button" name="submit" value="Login" type="submit"><btn-txt>SIGN IN</btn-txt></button>
     
     <hr class="my-4">
 
@@ -115,12 +115,19 @@
   <button class="w-100 btn btn-lg btn-block dhoori2" style="background-color: #007bb6;"
     type="submit"><i class="fab fa-windows"></i><btn-txt>SIGN IN WITH MICROSOFT</btn-txt></button>
 
-    <a>No account?</a><a href="../signin"> Create one</a>
+    <a>No account?</a><a href="../signup/"> Create one</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2022 - Made With ❤️ In India</p>
   </form>
-</main>
 
-</div>
+</main>
     
   </body>
 </html>
+
+
+
+
+
+
+
+
