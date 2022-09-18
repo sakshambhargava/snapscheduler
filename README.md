@@ -1,8 +1,3 @@
-
-![Logo](https://snap.saksh.co/img/logo.svg)
-
-
-
 # SnapScheduler
 
 In this project we have created one Login Page, one Signup page, using PHP technology and to connect this page we have created sql database SNAP in which it contain user table to store the user information to check again for login. After login we take the information form the user to schedule its's meeting like Title, date of meeting, time of meeting, and using location like ZOOM, Meet, Skype etc. and storing this information in the SNAP_detail table of SNAP database.
