@@ -1,4 +1,22 @@
-@charset "UTF-8";
+@media print {
+    .form-section {
+      display: inline !important
+    }
+
+    .form-pagebreak {
+      display: none !important
+    }
+
+    .form-section-closed {
+      height: auto !important
+    }
+
+    .page-section {
+      position: initial !important
+    }
+  }
+
+
 /*!
 * Start Bootstrap - New Age v6.0.6 (https://startbootstrap.com/theme/new-age)
 * Copyright 2013-2022 Start Bootstrap
@@ -11622,3 +11640,4 @@ footer a:hover, footer a:active, footer a:focus {
     max-width: 17rem;
   }
 }
+  

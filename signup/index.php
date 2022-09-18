@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -83,32 +85,15 @@
 
 
 
-        <?php 
-
-if((isset($_SESSION['userid']) and strlen($_SESSION['userid']) > 5)){
-
-
-  echo "<button onclick="window.location.href = 'logout.php';" type="button" class="btn btn-primary">Logout</button>";
- 
- }else{
- 
- echo "<button onclick="window.location.href = '../login/';" type="button" class="btn btn-primary">Login</button>";
- 
- }
-
-
-?>
-
-        <?php if( $_SESSION['user_logged_in']): ?>
-          
+        <?php if($_SESSION['username']): ?>
+      <button onclick="window.location.href = 'logout.php';" type="button" class="btn btn-primary">Logout</button>
 <?php else: ?>
-  <button onclick="window.location.href = '../login/';" type="button" class="btn btn-primary">Login</button>
+  <button onclick="window.location.href = 'login';" type="button" class="btn btn-primary">Login</button>
 <?php endif; ?>
 
 
 
 
-        </div>
       </nav>
 
  <div class="text-center">

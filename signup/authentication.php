@@ -14,6 +14,7 @@
         $sql = "INSERT INTO users VALUES ('$username',
             '" . md5($password) . "')";
          
+         
         if(mysqli_query($conn, $sql)){
             header("Location: ../");
 

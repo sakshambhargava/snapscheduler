@@ -15,16 +15,25 @@
       
         $sql = "select * from users where username = '$username' and password = '" . md5($password) . "'";  
         $result = mysqli_query($con, $sql);  
-        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-        $count = mysqli_num_rows($result);  
+        // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+        $count = mysqli_num_rows($result); 
+        
+        
+        $row  = mysqli_fetch_array($result);
+        if(is_array($row)) {
+        $_SESSION["username"] = $row['username'];
+        } else {
+         $message = "Invalid Username or Password!";
+        }
+
+
           
         if($count == 1){  
-            header("Location: ../");
+            header("Location: ../scheduler/");
             
         }  
         else{  
             echo '<script>alert("Welcome to Geeks for Geeks")</script>';
         }     
 ?> 
-
 
